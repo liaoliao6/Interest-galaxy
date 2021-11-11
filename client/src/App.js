@@ -1,15 +1,22 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Posts from "./components/Posts/Posts";
 import { Typography, Container, AppBar, Grow, Grid } from "@material-ui/core";
 import galaxy from "./images/galaxy.jpg";
+import { useDispatch } from "react-redux";
+import { getPosts } from "./actions/posts"
 import useStyles from './styles';
 
 const App = () => {
     //const [currentId, setCurrentId] = useState(0);
-    //const dispatch = useDispatch();
+    const dispatch = useDispatch();
     const classes = useStyles();
+    useEffect(() => {
+        dispatch(getPosts());
+    }, [dispatch]);
 
-
+    /*  useEffect(() => {
+         dispatch(getPosts());
+     }, [currentId, dispatch]); */
 
     return (
         <Container maxWidth="lg">
