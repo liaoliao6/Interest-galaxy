@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import Posts from "./components/Posts/Posts";
 import { Typography, Container, AppBar, Grow, Grid } from "@material-ui/core";
 import galaxy from "./images/galaxy.jpg";
@@ -7,7 +7,7 @@ import { getPosts } from "./actions/posts"
 import useStyles from './styles';
 
 const App = () => {
-    //const [currentId, setCurrentId] = useState(0);
+    const [currentId, setCurrentId] = useState(0);
     const dispatch = useDispatch();
     const classes = useStyles();
     useEffect(() => {
