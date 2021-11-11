@@ -27,6 +27,61 @@ export const getPosts = async (req, res) => {
     }
 }
 
+export const getFoodPosts = async (req, res) => { 
+
+    try {
+        const posts = await Post.find({"tags": "food"});
+       
+        res.status(200).json({data:posts})
+    } catch (error) {
+        res.status(404).json({ message: error.message });
+    }
+}
+
+export const getTravelPosts = async (req, res) => { 
+
+    try {
+        const posts = await Post.find({"tags": "travel"});
+       
+        res.status(200).json({data:posts})
+    } catch (error) {
+        res.status(404).json({ message: error.message });
+    }
+}
+
+export const getFashionPosts = async (req, res) => { 
+
+    try {
+        const posts = await Post.find({"tags": "fashion"});
+       
+        res.status(200).json({data:posts})
+    } catch (error) {
+        res.status(404).json({ message: error.message });
+    }
+}
+
+export const getDesignPosts = async (req, res) => { 
+
+    try {
+        const posts = await Post.find({"tags": "interior-design"});
+       
+        res.status(200).json({data:posts})
+    } catch (error) {
+        res.status(404).json({ message: error.message });
+    }
+}
+
+export const getCosmeticPosts = async (req, res) => { 
+
+    try {
+        const posts = await Post.find({"tags": "cosmetic"});
+       
+        res.status(200).json({data:posts})
+    } catch (error) {
+        res.status(404).json({ message: error.message });
+    }
+}
+
 export const getPost = async (req, res) => { 
     const { id } = req.params;
 

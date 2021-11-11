@@ -1,5 +1,5 @@
 import express from 'express';
-import { createPost, getPosts, getPost, deletePost, updatePost, likePost } from '../controllers/posts.js';
+import { createPost, getPosts, getFoodPosts, getTravelPosts, getFashionPosts, getDesignPosts, getCosmeticPosts, getPost, deletePost, updatePost, likePost } from '../controllers/posts.js';
 
 const router = express.Router();
 
@@ -12,6 +12,31 @@ router.post('/', createPost);
 // @desc   Get All Posts
 // @access Public
 router.get('/', getPosts);
+
+// @route  GET api/posts/food
+// @desc   Get All Posts
+// @access Public
+router.get('/food', getFoodPosts);
+
+// @route  GET api/posts/travel
+// @desc   Get All Posts
+// @access Public
+router.get('/travel', getTravelPosts);
+
+// @route  GET api/posts/fashion
+// @desc   Get All Posts
+// @access Public
+router.get('/fashion', getFashionPosts);
+
+// @route  GET api/posts/design
+// @desc   Get All Posts
+// @access Public
+router.get('/design', getDesignPosts);
+
+// @route  GET api/posts/cosmetic
+// @desc   Get All Posts
+// @access Public
+router.get('/cosmetic', getCosmeticPosts);
 
 // @route  GET api/posts/:id
 // @desc   Get A Post
