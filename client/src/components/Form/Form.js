@@ -3,7 +3,7 @@ import React, { useState, useEffect } from "react";
 import useStyles from './styles';
 import FileBase from 'react-file-base64';
 import { useDispatch, useSelector } from 'react-redux';
-import { FormControl, InputBase, MenuItem, InputLabel, Select, TextField, Button, Typography, Paper } from "@material-ui/core";
+import { FormControl, MenuItem, InputLabel, Select, TextField, Button, Typography, Paper } from "@material-ui/core";
 import { createPost, updatePost } from '../../actions/posts';
 
 
@@ -21,23 +21,25 @@ const Form = ({ currentId, setCurrentId }) => {
         if (post) setPostData(post);
     }, [post]);
 
+    const clear = () => {
+        setCurrentId(null);
+        setPostData({ creator: '', title: '', message: '', tags: '', selectedFile: '' });
+    };
+
     const handleSubmit = async (e) => {
         e.preventDefault();
         dispatch(createPost(postData));
 
         if (currentId === 0) {
             dispatch(createPost(postData));
-            //clear();
+            clear();
         } else {
             dispatch(updatePost(currentId, postData));
-            //clear();
+            clear();
         }
     };
 
-    const clear = () => {
-        /*  setCurrentId(0);
-         setPostData({ creator: '', title: '', message: '', tags: '', selectedFile: '' }); */
-    };
+
     return (
         <Paper className={classes.paper}>
             <form autoComplete="off" noValidate className={`${classes.root} ${classes.form}`} onSubmit={handleSubmit}>
