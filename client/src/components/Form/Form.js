@@ -8,7 +8,7 @@ import { createPost, updatePost } from '../../actions/posts';
 
 
 
-const Form = ({ currentId, setCurrentId }) => {
+const Form = ({ /* currentId, setCurrentId */ }) => {
     const classes = useStyles();
     const dispatch = useDispatch();
     const [postData, setPostData] = useState({
@@ -18,19 +18,20 @@ const Form = ({ currentId, setCurrentId }) => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+        dispatch(createPost(postData));
 
-        if (currentId === 0) {
-            dispatch(createPost(postData));
-            clear();
-        } else {
-            dispatch(updatePost(currentId, postData));
-            clear();
-        }
+        // if (currentId === 0) {
+        //     dispatch(createPost(postData));
+        //     clear();
+        // } else {
+        //     dispatch(updatePost(currentId, postData));
+        //     clear();
+        // }
     };
 
     const clear = () => {
-        setCurrentId(0);
-        setPostData({ creator: '', title: '', message: '', tags: '', selectedFile: '' });
+        /*  setCurrentId(0);
+         setPostData({ creator: '', title: '', message: '', tags: '', selectedFile: '' }); */
     };
     return (
         <Paper className={classes.paper}>
@@ -49,8 +50,6 @@ const Form = ({ currentId, setCurrentId }) => {
                         <MenuItem value={'Cosmetic'}>Cosmetic</MenuItem>
                     </Select>
                 </FormControl>
-
-
                 <div className={classes.fileInput}><FileBase type="file" multiple={false} onDone={({ base64 }) => setPostData({ ...postData, selectedFile: base64 })} /></div>
                 <Button className={classes.buttonSubmit} variant="contained" size="large" type="submit" fullWidth>Post!</Button>
                 <Button className={classes.buttonClear} variant="contained" size="small" onClick={clear} fullWidth>Clear</Button>
