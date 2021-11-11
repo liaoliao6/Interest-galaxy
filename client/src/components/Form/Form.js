@@ -1,5 +1,5 @@
 // This form to to create a new post
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import useStyles from './styles';
 import FileBase from 'react-file-base64';
 import { useDispatch, useSelector } from 'react-redux';
@@ -8,25 +8,30 @@ import { createPost, updatePost } from '../../actions/posts';
 
 
 
-const Form = ({ /* currentId, setCurrentId */ }) => {
+const Form = ({ currentId, setCurrentId }) => {
     const classes = useStyles();
     const dispatch = useDispatch();
+    const post = useSelector((state) => (currentId ? state.posts.find((p) => p._id === currentId) : null));
     const [postData, setPostData] = useState({
         //use this in value
         creator: '', title: '', message: '', tags: '', selectedFile: ''
     });
 
+    useEffect(() => {
+        if (post) setPostData(post);
+    }, [post]);
+
     const handleSubmit = async (e) => {
         e.preventDefault();
         dispatch(createPost(postData));
 
-        // if (currentId === 0) {
-        //     dispatch(createPost(postData));
-        //     clear();
-        // } else {
-        //     dispatch(updatePost(currentId, postData));
-        //     clear();
-        // }
+        if (currentId === 0) {
+            dispatch(createPost(postData));
+            //clear();
+        } else {
+            dispatch(updatePost(currentId, postData));
+            //clear();
+        }
     };
 
     const clear = () => {
