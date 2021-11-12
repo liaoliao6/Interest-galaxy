@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import Posts from "./components/Posts/Posts";
+import Posts from "./components/Posts/PostsPersonal";
 import Form from "./components/Form/Form";
 import { useDispatch } from "react-redux";
 import { getPosts } from "./actions/posts"

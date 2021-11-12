@@ -1,10 +1,10 @@
 import React from "react";
-import Post from "./Post/Post"
+import Post from "./Post/PostPersonal"
 import useStyles from './styles';
 import { useSelector } from "react-redux";
 import { Grid, CircularProgress } from '@material-ui/core';
 
-//主页的posts，不允许修改删除
+//个人页面的post
 const Posts = ({ setCurrentId }) => {
     const posts = useSelector((state) => state.posts);
     const classes = useStyles();
@@ -14,7 +14,7 @@ const Posts = ({ setCurrentId }) => {
         !posts.length ? <CircularProgress /> : (
             <Grid className={classes.container} container alignItems="strech" spacing={3} >
                 {posts.map((post) => (
-                    <Grid key={post._id} item xs={6} sm={4}>
+                    <Grid key={post._id} item xs={12} sm={6}>
                         <Post post={post} setCurrentId={setCurrentId} />
                     </Grid>
                 ))}
