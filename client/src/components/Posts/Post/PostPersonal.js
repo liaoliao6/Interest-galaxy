@@ -6,10 +6,9 @@ import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
 import MoreHorizIcon from '@mui/icons-material/MoreHoriz';
 import moment from 'moment';
 import { useDispatch } from "react-redux";
-import { likePost } from "../../../actions/posts";
+import { deletePost, likePost } from "../../../actions/posts";
 
-//主页单独的一个post，不允许修改删除
-
+//个人页面单独的一个post
 const Post = ({ post, setCurrentId }) => {
     const classes = useStyles();
     const dispatch = useDispatch();
@@ -20,6 +19,11 @@ const Post = ({ post, setCurrentId }) => {
                 <Typography variant="h6">{post.creator}</Typography>
                 <Typography variant="body2">{moment(post.createdAt).fromNow()}</Typography>
             </div>
+            <div className={classes.overlay2}>
+                <Button style={{ color: "white" }} size="small" onClick={() => setCurrentId(post._id)}>
+                    <MoreHorizIcon fontSize="default" />
+                </Button>
+            </div>
             <div className={classes.details}>
                 <Typography variant="body2" color="textSecondary">{post.tags}</Typography>
             </div>
@@ -29,6 +33,7 @@ const Post = ({ post, setCurrentId }) => {
             </CardContent>
             <CardActions className={classes.cardActions}>
                 <Button size="small" onClick={() => dispatch(likePost(post._id))}> <FavoriteIcon style={{ color: "#a10630" }} fontSize="small" /> &nbsp;Like {post.likeCount} </Button>
+                <Button size="small" color="primary" onClick={() => dispatch(deletePost(post._id))}><DeleteOutlineIcon fontSize="small" />  &nbsp;Delete &nbsp;</Button>
             </CardActions>
 
         </Card>

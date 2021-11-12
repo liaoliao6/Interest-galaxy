@@ -6,6 +6,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import { FormControl, MenuItem, InputLabel, Select, TextField, Button, Typography, Paper } from "@material-ui/core";
 import { createPost, updatePost } from '../../actions/posts';
 
+//创建新的post的form
+
 
 
 const Form = ({ currentId, setCurrentId }) => {
