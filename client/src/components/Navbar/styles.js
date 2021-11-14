@@ -1,6 +1,7 @@
 
 import { makeStyles } from '@material-ui/core/styles';
 import { deepPurple } from '@material-ui/core/colors';
+import galaxy from "../../images/galaxy.jpg";
 
 export default makeStyles((theme) => ({
   appBar: {
@@ -11,13 +12,14 @@ export default makeStyles((theme) => ({
     justifyContent: 'space-between',
     alignItems: 'center',
     padding: '10px 50px',
+    backgroundImage: `url(${galaxy})`,
+    backgroundRepeat: "no-repeat",
+    backgroundPosition: "center center",
+    backgroundSize: "cover",
+
   },
   heading: {
-    color: 'rgba(0,183,255, 1)',
-    textDecoration: 'none',
-  },
-  image: {
-    marginLeft: '15px',
+    color: 'white',
   },
   toolbar: {
     display: 'flex',
