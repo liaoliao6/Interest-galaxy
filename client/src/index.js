@@ -21,10 +21,10 @@ ReactDOM.render(
     document.getElementById('root')
 );
 
-/* ReactDOM.render(
-    <Provider store={store}>
-        <Personal />
-    </Provider>,
+// ReactDOM.render(
+//     <Provider store={store}>
+//         <Personal />
+//     </Provider>,
 
-    document.getElementById('root')
-); */
+//     document.getElementById('root')
+// );
