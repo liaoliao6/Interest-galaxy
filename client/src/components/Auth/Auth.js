@@ -21,6 +21,12 @@ const Auth = () => {
 
 
   const handleSubmit = (e) => {
+    e.preventDefault();
+    if (isSignup) {
+      console.log('signup');
+    } else {
+      console.log('not signup');
+    }
   };
 
   const switchMode = () => {
