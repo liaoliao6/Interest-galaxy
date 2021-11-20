@@ -8,16 +8,23 @@ import * as actionType from '../../constants/actionTypes';
 import galaxy from "../../images/galaxy.jpg";
 
 const Navbar = () => {
-    const classes = useStyles();
     const [user, setUser] = useState(JSON.parse(localStorage.getItem('profile')));
+    const [signin, setSignin] = useState(false);
     const dispatch = useDispatch();
     const history = useHistory();
+    const classes = useStyles();
 
     const logout = () => {
         dispatch({ type: actionType.LOGOUT });
         history.push('/auth');
         setUser(null);
     };
+
+    useEffect(() => {
+        console.log("Navbar useEffect.");
+        setUser(JSON.parse(localStorage.getItem('profile')));
+        setSignin(true);
+    }, []);
 
     return (
         <AppBar className={classes.appBar} position="static" color="inherit">
@@ -28,7 +35,7 @@ const Navbar = () => {
                 {user?.result ? (
                     <div className={classes.profile}>
                         <Avatar className={classes.purple} alt={user?.result.name} src={user?.result.imageUrl}>{user?.result.name.charAt(0)}</Avatar>
-                        <Typography className={classes.userName} variant="h6">{user?.result.name}</Typography>
+                        <Typography className={classes.userName} variant="h6"  style={{color:"white"}}>{user?.result.name}</Typography>
                         <Button variant="contained" className={classes.logout} color="secondary" onClick={logout}>Logout</Button>
                     </div>
                 ) : (
@@ -37,6 +44,6 @@ const Navbar = () => {
             </Toolbar>
         </AppBar>
     );
-}
+};
 
 export default Navbar;
