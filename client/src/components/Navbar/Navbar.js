@@ -1,14 +1,22 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react';
 import { AppBar, Toolbar, Typography, Avatar, Button } from '@material-ui/core';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import useStyles from './styles';
+import { useDispatch } from 'react-redux';
+import * as actionType from '../../constants/actionTypes';
+
 import galaxy from "../../images/galaxy.jpg";
 
 const Navbar = () => {
     const classes = useStyles();
-    const user = null;
+    const [user, setUser] = useState(JSON.parse(localStorage.getItem('profile')));
+    const dispatch = useDispatch();
+    const history = useHistory();
 
     const logout = () => {
+        dispatch({ type: actionType.LOGOUT });
+        history.push('/auth');
+        setUser(null);
     };
 
     return (
