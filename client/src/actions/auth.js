@@ -1,24 +1,23 @@
 import * as api from "../api/index.js";
-import { FETCH_ALL, CREATE, UPDATE, DELETE, LIKE } from '../constants/actionTypes';
+import { AUTH } from '../constants/actionTypes';
 
-export const signin = (form, history) => async (dispatch) => {
+export const signin = (form, router) => async (dispatch) => {
     try {
-        // TODO: send form to backend.
         console.log("signin.");
-        
-        history.push('/');
-
+        const { data } = await api.signIn(form);
+        dispatch({ type: AUTH, data });
+        router.push('/');
     } catch (err) {
         console.log(err);
     }
 }
 
-export const signup = (form, history) => async (dispatch) => {
+export const signup = (form, router) => async (dispatch) => {
     try {
-        // TODO: send form to backend.
         console.log("signup.");
-        
-        history.push('/');
+        const { data } = await api.signUp(form);
+        dispatch({ type: AUTH, data });
+        router.push('/');
 
     } catch (err) {
         console.log(err);

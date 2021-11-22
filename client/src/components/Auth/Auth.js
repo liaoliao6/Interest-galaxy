@@ -5,7 +5,7 @@ import { Avatar, Button, Paper, Grid, Typography, Container } from '@material-ui
 import { useHistory } from 'react-router-dom';
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 
-// import { signin, signup } from '../../actions/auth';
+import { signin, signup } from '../../actions/auth';
 import useStyles from './styles';
 import Input from './Input';
 
@@ -14,6 +14,8 @@ const initialState = { firstName: '', lastName: '', email: '', password: '', con
 const Auth = () => {
   const [form, setForm] = useState(initialState);
   const [isSignup, setIsSignup] = useState(false);
+  const dispatch = useDispatch();
+  const history = useHistory();
   const classes = useStyles();
 
   const [showPassword, setShowPassword] = useState(false);
@@ -24,8 +26,10 @@ const Auth = () => {
     e.preventDefault();
     if (isSignup) {
       console.log('signup');
+      dispatch(signup(form, history));
     } else {
       console.log('not signup');
+      dispatch(signin(form, history));
     }
   };
 
