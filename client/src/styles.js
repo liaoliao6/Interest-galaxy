@@ -20,6 +20,11 @@ export default makeStyles(() => ({
         color: 'white',
     },
 
+    homeButton: {
+        display: 'flex',
+        justifycontent: 'flex-end',
+    },
+
 }
 
 )
