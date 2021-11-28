@@ -1,4 +1,5 @@
 import express from 'express';
+import auth from '../middleware/auth.js';
 import { createPost, getPosts, getFoodPosts, getTravelPosts, getFashionPosts, getDesignPosts, getCosmeticPosts, getPost, deletePost, updatePost, likePost } from '../controllers/posts.js';
 
 const router = express.Router();
@@ -6,7 +7,7 @@ const router = express.Router();
 // @route  POST api/posts
 // @desc   Create A Post
 // @access Public
-router.post('/', createPost);
+router.post('/', auth, createPost);
 
 // @route  GET api/posts
 // @desc   Get All Posts
@@ -46,17 +47,17 @@ router.get('/:id', getPost);
 // @route  DELETE api/posts/:id
 // @desc   Delete A Post
 // @access Public
-router.delete('/:id', deletePost);
+router.delete('/:id', auth, deletePost);
 
 // @route  Patch api/posts/:id
 // @desc   Update A Post
 // @access Public
-router.patch('/:id', updatePost);
+router.patch('/:id', auth, updatePost);
 
 // @route  Patch api/posts/:id
 // @desc   Like A Post
 // @access Public
-router.patch('/:id/likePost', likePost);
+router.patch('/:id/likePost', auth, likePost);
 
 
 export default router;

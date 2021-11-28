@@ -5,9 +5,9 @@ import Post from '../models/post.js';
 
 
 export const createPost = async (req, res) => {
-    const { title, message, selectedFile, creator, tags } = req.body;
+    const post = req.body;
 
-    const newPost = new Post({ title, message, selectedFile, creator, tags })
+    const newPost = new Post({ ...post, creator: req.userId, createdAt: new Date().toISOString() })
 
     try {
         await newPost.save();
@@ -120,11 +120,23 @@ export const updatePost = async (req, res) => {
 export const likePost = async (req, res) => {
     const { id } = req.params;
 
+    if (!req.userId) return res.json({ message: 'Unauthenticated' });
+
     if (!mongoose.Types.ObjectId.isValid(id)) return res.status(404).send(`No post with id: ${id}`);
     
     const post = await Post.findById(id);
 
-    const updatedPost = await Post.findByIdAndUpdate(id, { likeCount: post.likeCount + 1 }, { new: true });
+    const index = post.likes.findIndex((id) => id === String(req.userId));
+
+    if (index === -1) {
+        console.log(`push new like: id = ${id}`);
+        post.likes.push(req.userId);
+    } else {
+        console.log(`dedup like: id = ${id}`);
+        post.likes = post.likes.filter((id => id !== String(req.userId)));
+    }
+
+    const updatedPost = await Post.findByIdAndUpdate(id, post, { new: true });
     
     res.json(updatedPost);
 }
