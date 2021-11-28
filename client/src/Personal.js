@@ -40,22 +40,10 @@ const Personal = () => {
     return (
         <Container maxWidth="lg">
             <AppBar className={classes.appBar} position="static" color="inherit">
-                <Typography className={classes.heading} variant="h2" >Your Galaxy</Typography>
-                {/* <Toolbar className={classes.toolbar}>
-                    <Button variant="contained" className={classes.homeButton} color="secondary" onClick={routeChange}>Home</Button>
-                </Toolbar> */}
+                <Typography className={classes.heading} variant="h2" >My Galaxy</Typography>
                 <Toolbar className={classes.toolbar}>
-                {user?.result ? (
-                    <div className={classes.profile}>
-                        <Avatar className={classes.purple} alt={user?.result.name} src={user?.result.imageUrl}>{user?.result.name.charAt(0)}</Avatar>
-                        <Typography className={classes.userName} variant="h6" style={{color:"white"}}>{user?.result.name}</Typography>
-                        <Button variant="contained" className={classes.logout} color="secondary" onClick={routeChange}>Home</Button>
-                        <Button variant="contained" className={classes.logout} color="grey" onClick={logout}>Logout</Button>
-                    </div>
-                ) : (
-                    <Button component={Link} to="/auth" variant="contained" color="primary">Sign In</Button>
-                )}
-            </Toolbar>
+                    <Button variant="contained" className={classes.homeButton} color="secondary" onClick={routeChange}>Home</Button>
+                </Toolbar>
             </AppBar>
             <Grow in>
                 <Container>
