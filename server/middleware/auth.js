@@ -4,7 +4,10 @@ const privateKey = 'guessit';
 
 const auth = async (req, res, next) => {
   try {
+    console.log("req: %j", req);
+
     const token = req.headers.authorization.split(" ")[1];
+ 
     
     // TODO: remove the following log.
     console.log("token: %s", token);

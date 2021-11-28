@@ -5,6 +5,7 @@ import Post from '../models/post.js';
 
 
 export const createPost = async (req, res) => {
+    console.log("createPost");
     const post = req.body;
 
     const newPost = new Post({ ...post, creator: req.userId, createdAt: new Date().toISOString() })
@@ -31,7 +32,8 @@ export const getPersonalPosts = async (req, res) => {
     try {
         const { id } = req.params;
         console.log(`person id: ${id}`);
-        const posts = await Post.find({"id_": id});
+        const posts = await Post.find({"creator": id});
+        console.log(`posts count: ${posts.length}`);
        
         res.status(200).json(posts)
     } catch (error) {
@@ -133,6 +135,8 @@ export const likePost = async (req, res) => {
     const { id } = req.params;
 
     if (!req.userId) return res.json({ message: 'Unauthenticated' });
+
+    console.log(`likePost user id: ${req.userId}`);
 
     if (!mongoose.Types.ObjectId.isValid(id)) return res.status(404).send(`No post with id: ${id}`);
     
