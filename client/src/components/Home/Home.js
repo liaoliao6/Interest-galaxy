@@ -12,6 +12,7 @@ const Home = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
+    console.log(`Home Personal id: ${currentId}`);
     dispatch(getPosts());
   }, [currentId, dispatch]);
 

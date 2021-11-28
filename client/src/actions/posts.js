@@ -2,6 +2,18 @@ import * as api from "../api/index.js";
 import { FETCH_ALL, CREATE, UPDATE, DELETE, LIKE } from '../constants/actionTypes';
 
 //Action Ctreating
+
+export const getPersonalPosts = (id) => async (dispatch) => {
+    try {
+        console.log(`getPersonalPosts id : ${id}`);
+        const { data } = await api.fetchPersonalPosts(id);
+
+        dispatch({ type: FETCH_ALL, payload: data });
+    } catch (error) {
+        console.log(error);
+    }
+};
+
 export const getPosts = () => async (dispatch) => {
     try {
         const { data } = await api.fetchPosts();
@@ -14,6 +26,7 @@ export const getPosts = () => async (dispatch) => {
 
 export const createPost = (post) => async (dispatch) => {
     try {
+        console.log("action createPost");
         const { data } = await api.createPost(post);
 
         dispatch({ type: CREATE, payload: data });
@@ -34,6 +47,7 @@ export const updatePost = (id, post) => async (dispatch) => {
 
 export const likePost = (id) => async (dispatch) => {
     try {
+        console.log(`likePost id: ${id}`);
         const { data } = await api.likePost(id);
 
         dispatch({ type: LIKE, payload: data });
