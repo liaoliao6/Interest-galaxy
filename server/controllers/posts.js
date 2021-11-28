@@ -27,6 +27,18 @@ export const getPosts = async (req, res) => {
     }
 }
 
+export const getPersonalPosts = async (req, res) => {
+    try {
+        const { id } = req.params;
+        console.log(`person id: ${id}`);
+        const posts = await Post.find({"id_": id});
+       
+        res.status(200).json(posts)
+    } catch (error) {
+        res.status(404).json({ message: error.message });
+    }
+}
+
 export const getFoodPosts = async (req, res) => { 
 
     try {

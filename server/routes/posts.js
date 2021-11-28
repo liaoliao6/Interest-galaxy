@@ -1,6 +1,6 @@
 import express from 'express';
 import auth from '../middleware/auth.js';
-import { createPost, getPosts, getFoodPosts, getTravelPosts, getFashionPosts, getDesignPosts, getCosmeticPosts, getPost, deletePost, updatePost, likePost } from '../controllers/posts.js';
+import { createPost, getPosts, getFoodPosts, getTravelPosts, getFashionPosts, getDesignPosts, getCosmeticPosts, getPost, deletePost, updatePost, likePost, getPersonalPosts } from '../controllers/posts.js';
 
 const router = express.Router();
 
@@ -13,6 +13,11 @@ router.post('/', auth, createPost);
 // @desc   Get All Posts
 // @access Public
 router.get('/', getPosts);
+
+// @route  Patch api/posts/:id
+// @desc   Get posts from user ID.
+// @access Public
+router.get('/personal/:id', getPersonalPosts);
 
 // @route  GET api/posts/food
 // @desc   Get All Posts
